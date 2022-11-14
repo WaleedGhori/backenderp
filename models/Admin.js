@@ -1,11 +1,13 @@
 const mongoose  = require("mongoose");
-const { Schema } = mongoose;
+const { Schema } = mongoose
 
 const AdminSchema = new Schema({
+
     adminid:{
-        type:String,
+        // type:String,
         required:true,
-        unique:true
+        // unique:true
+        type:Number
     },
     a_name :{
         type: String,
@@ -36,7 +38,21 @@ const AdminSchema = new Schema({
         default: Date.now 
     },
 })
+// const AdminCounterSchema = new Schema({
+
+//     id:{
+//         type:String,
+    
+//     },
+//     seq :{
+//         type: Number,
+//     },
+
+// })
+
 
 const Admin = mongoose.model('admin' , AdminSchema)
+// const AdminCounter = mongoose.model('admincounter' , AdminCounterSchema)
 Admin.createIndexes();
 module.exports = Admin;
+// module.exports = AdminCounter
