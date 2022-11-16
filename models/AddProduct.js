@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const AddProductSchema = new Schema({
     p_Id:{
-        type:String,
+        type:Number,
         required:true,
         unique:true
     },
@@ -24,7 +24,7 @@ const AddProductSchema = new Schema({
         required:true
     },
     p_price:{
-        type: String,
+        type: Number,
         required:true
     },
     P_sale:{
@@ -39,6 +39,6 @@ const AddProductSchema = new Schema({
     },
 })
 
-const AddProd = mongoose.model('addprod' , AddProductSchema)
-AddProd.createIndexes();
-module.exports = AddProd;
+const AddProduct = mongoose.model('addprod' , AddProductSchema)
+AddProduct.createIndexes();
+module.exports = AddProduct;
