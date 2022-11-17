@@ -1,48 +1,48 @@
+
 const mongoose  = require("mongoose");
 const { Schema } = mongoose
 
-const AdminSchema = new Schema({
+const CustomerSchema = new Schema({
 
-    adminid:{
+    c_Id:{
         // type:String,
-        required:true,
         // unique:true
-        type:Number
-        ,
+        required:true,
+        type:Number,
         unique:true
     },
-    a_name :{
+    cus_name :{
         type: String,
         required:true
     },
-    f_name :{
+    p_name:{
         type: String,
         required:true
     },
-    password :{
-        type: String,
+    pro_quantity:{
+        type: Number,
         required:true
     },
-    address:{
-        type: String,
+    t_ammount:{
+        type: Number,
+    },
+    a_recived:{
+        type: Number,
         required:true
     },
-    cnic:{
-        type: String,
-        required:true
+    bal_ammount:{
+        type: Number,
     },
-    phone:{
-        type: String,
-        required:true
+    discount:{
+        type: Number,
     },
     date:{ 
         type: Date, 
         default: Date.now 
     },
 })
-
-const Admin = mongoose.model('admin' , AdminSchema)
+const Customer = mongoose.model('customer' , CustomerSchema)
 // const AdminCounter = mongoose.model('admincounter' , AdminCounterSchema)
-Admin.createIndexes();
-module.exports = Admin;
+Customer.createIndexes();
+module.exports  = Customer;
 // module.exports = AdminCounter
