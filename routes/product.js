@@ -16,7 +16,7 @@ router.get("/getproduct", async (req, res) => {
 
 // Router 2 we add a product
 router.post(
-  "/addproduct",
+  "/addproduct",fetchuser,
   [
     body("p_name", "Enter a valid product name").isLength({ min: 3 }),
     body("p_category", "Enter a valid category name").isLength({ min: 3 }),
@@ -145,7 +145,7 @@ router.put("/updateproduct/:id",fetchuser, [
   }
 });
 
-// ROUTE 4: Delete an existing Note using: DELETE "/api/notes/deletenote". Login required
+// ROUTE 4: Delete an existing Note using: DELETE "/api/product/deleteproduct". Login required
 router.delete('/deleteproduct/:id', async (req, res) => {
     try {
         // Find the note to be delete and delete it
@@ -164,4 +164,35 @@ router.delete('/deleteproduct/:id', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 })
+
+// Route:5 find a product through by product id. login required
+// router.get('/getproduct/:id',fetchuser, async(req , res)=>{
+//   try {
+//     let getProduct = await AddProduct.findById(req.params_id)
+//     console.log(getProduct);
+//     if(!getProduct){
+//       return res.status(404).send("Not Found");
+//     }
+//     else{
+//       return res.json(getProduct)
+//     }
+//   } catch (error) {
+//     res.status(500).send("Internal Server Error");
+    
+//   }
+// })
+
+router.get("/getproduct/:p_Id", async (req, res) => {
+  try {
+    const addProduct = await AddProduct.findOne({p_Id:req.params.p_Id})
+    if (!addProduct) {
+     return res.status(404).send("Not Found") 
+    }
+    else{
+      res.json(addProduct);
+    }
+  } catch (error) {
+    res.status(500).send("Internal Server Error");
+  }
+});
 module.exports = router;

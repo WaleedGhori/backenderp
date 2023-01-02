@@ -20,7 +20,7 @@ const AddProductSchema = new Schema({
         required:true
     },
     p_quantity:{
-        type: String,
+        type: Number,
         required:true
     },
     p_price:{
