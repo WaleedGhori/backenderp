@@ -10,8 +10,8 @@ router.post(
   "/createinvocie",
   [
     body("cus_name", "Customer name is not valid").isLength({ min: 3 }),
-    body("pro_quantity", "Product is not valid").isLength({ min: 1 }),
-    body("a_recived", "Ammount recived is not valid").isLength({ min: 1 }),
+    // body("pro_quantity", "Product is not valid").isLength({ min: 1 }),
+    // body("a_recived", "Ammount recived is not valid").isLength({ min: 1 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -38,14 +38,17 @@ router.post(
             // adminid: req.body.adminid,
             c_Id: seqId,
             cus_name: req.body.cus_name,
-            p_name: req.body.p_name,
-            pro_quantity: req.body.pro_quantity,
-            t_ammount: req.body.t_ammount,
-            a_recived: req.body.a_recived,
-            bal_ammount: req.body.bal_ammount,
-            discount: req.body.discount,
+            products:req.body.products,
+            totalquant: req.body.totalquant,
+            subtotal:req.body.subtotal,
+            finalpay:req.body.finalpay,
+            ammountpay:req.body.ammountpay,
+            balanceammount: req.body.balanceammount,
+            totalsale: req.body.totalsale,
+            totalexsale: req.body.totalexsale,
+            returnammount:req.body.returnammount
           });
-
+            // console.log(req.body.products)
           const saveInvoice = await customer.save();
           res.json(saveInvoice);
         }

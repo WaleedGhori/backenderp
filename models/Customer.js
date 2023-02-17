@@ -1,48 +1,68 @@
 
-const mongoose  = require("mongoose");
+const mongoose = require("mongoose");
 const { Schema } = mongoose
 
 const CustomerSchema = new Schema({
 
-    c_Id:{
+    c_Id: {
         // type:String,
         // unique:true
-        required:true,
-        type:Number,
-        unique:true
+        required: true,
+        type: Number,
+        unique: true
     },
-    cus_name :{
+    cus_name: {
         type: String,
-        required:true
+        required: true
     },
-    p_name:{
-        type: String,
-        required:true
-    },
-    pro_quantity:{
+    products: [
+        {
+            P_sale:{type:Number},
+            p_company:{type:String},
+            p_name:{type:String},
+            p_exsale:{type:Number},
+            p_price:{type:Number},
+            p_quantity:{type:Number},
+            cus_name:{type:String},
+            p_Id:{type:String},
+            pro_quantity:{type:String}
+        }
+    ],
+    subtotal: {
         type: Number,
-        required:true
+        required: true
+    }, 
+    totalquant: {
+        type: Number,
+        required: true
     },
-    t_ammount:{
+    finalpay: {
+        type: Number,
+        required: true
+    },
+    ammountpay: {
+        type: Number,
+        required: true
+    },
+    balanceammount: {
         type: Number,
     },
-    a_recived:{
-        type: Number,
-        required:true
-    },
-    bal_ammount:{
+    totalsale: {
         type: Number,
     },
-    discount:{
+    totalexsale: {
         type: Number,
     },
-    date:{ 
-        type: Date, 
-        default: Date.now 
+    returnammount: {
+        type: Number
+    },
+    date: {
+        type: Date,
+        default: Date.now
     },
 })
-const Customer = mongoose.model('customer' , CustomerSchema)
+const Customer = mongoose.model('customer', CustomerSchema)
 // const AdminCounter = mongoose.model('admincounter' , AdminCounterSchema)
 Customer.createIndexes();
-module.exports  = Customer;
+module.exports = Customer;
 // module.exports = AdminCounter

@@ -48,7 +48,7 @@ router.post(
             p_category,
             p_price,
             p_company,
-            p_sale,
+            P_sale,
             p_exsale,
             p_quantity,
           } = req.body;
@@ -58,7 +58,7 @@ router.post(
             p_category,
             p_price,
             p_company,
-            p_sale,
+            P_sale,
             p_exsale,
             p_quantity,
           });
@@ -87,7 +87,7 @@ router.put("/updateproduct/:id",fetchuser, [
     p_category,
     p_price,
     p_company,
-    p_sale,
+    P_sale,
     p_exsale,
     p_quantity,
   } = req.body;
@@ -110,8 +110,8 @@ router.put("/updateproduct/:id",fetchuser, [
     if (p_company) {
       newProduct.p_company = p_company;
     }
-    if (p_sale) {
-      newProduct.p_sale = p_sale;
+    if (P_sale) {
+      newProduct.P_sale = P_sale;
     }
     if (p_exsale) {
       newProduct.p_exsale = p_exsale;

@@ -28,7 +28,8 @@ const AddProductSchema = new Schema({
         required:true
     },
     P_sale:{
-        type:Number
+        type:Number,
+        required:true
     },
     p_exsale:{
         type:Number
