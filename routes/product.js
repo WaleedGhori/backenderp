@@ -74,11 +74,11 @@ router.post(
   }
 );
 
-// ROUTE 3: Update an existing Note using: PUT "/api/notes/updatenote". Login required
-router.put("/updateproduct/:id",fetchuser, [
+// ROUTE 3: Update an existing Note using: PUT "/api/product/updateproduct". Login required
+router.put("/updateproduct/:p_Id",fetchuser, [
     body("p_name", "Enter a valid product name").isLength({ min: 3 }),
     body("p_category", "Enter a valid category name").isLength({ min: 3 }),
-    body("p_company", "Enter a valid company name").isLength({ min: 6 }),
+    body("p_company", "Enter a valid company name").isLength({ min: 5 }),
     body("p_quantity", "Enter a valid quantity").isLength({ min: 1 }),
     body("p_price", "Enter a valid price").isLength({ min: 1 }),
   ], async (req, res) => {
@@ -122,7 +122,8 @@ router.put("/updateproduct/:id",fetchuser, [
 
     // Find the product to be updated and update it
     // let addProduct = await AddProduct.findOne(req.params.p_Id);//if we want to update our prdouct according to p_Id we can use this 
-    let addProduct = await AddProduct.findById(req.params.id);
+    // let addProduct = await AddProduct.findById(req.params.id);
+    let addProduct = await AddProduct.findOne({ p_Id: req.params.p_Id });
     if (!addProduct) {
       console.log(addProduct);
       return res.status(404).send("Not Found");
@@ -131,9 +132,10 @@ router.put("/updateproduct/:id",fetchuser, [
     // if (addProduct.admin.toString() !== req.admin.id) {
     //   return res.status(401).send("Not Allowed");
     // }
-    addProduct = await AddProduct.findByIdAndUpdate(
+    addProduct = await AddProduct.findOneAndUpdate(
       // req.params.p_Id,// if we want to update our prdouct according to p_Id we can use this 
-      req.params.id,
+      // req.params.id,
+      { p_Id: req.params.p_Id },
       { $set: newProduct },
       { new: true },
     );
