@@ -148,19 +148,19 @@ router.put("/updateproduct/:p_Id",fetchuser, [
 });
 
 // ROUTE 4: Delete an existing Note using: DELETE "/api/product/deleteproduct". Login required
-router.delete('/deleteproduct/:id', async (req, res) => {
+router.delete('/deleteproduct/:p_Id',fetchuser, async (req, res) => {
     try {
         // Find the note to be delete and delete it
-        let addProduct = await AddProduct.findById(req.params.id);
+        let addProduct = await AddProduct.findOne({p_Id:req.params.p_Id});
         if (!addProduct) { return res.status(404).send("Not Found") }
 
-        // Allow deletion only if user owns this Note
+        // Allow deletion only if user owns this product
         // if (note.user.toString() !== req.user.id) {
         //     return res.status(401).send("Not Allowed");
         // }
 
-        addProduct = await AddProduct.findByIdAndDelete(req.params.id)
-        res.json({ "Success": "Note has been deleted", addProduct: addProduct });
+        addProduct = await AddProduct.findOneAndDelete({ p_Id: req.params.p_Id })
+        res.json({ "Success": "Product has been deleted", addProduct: addProduct });
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
