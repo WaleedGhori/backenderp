@@ -15,19 +15,23 @@ const CustomerSchema = new Schema({
         type: String,
         required: true
     },
-    products: [
-        {
-            P_sale:{type:Number},
-            p_company:{type:String},
-            p_name:{type:String},
-            p_exsale:{type:Number},
-            p_price:{type:Number},
-            p_quantity:{type:Number},
-            cus_name:{type:String},
-            p_Id:{type:String},
-            pro_quantity:{type:String}
-        }
-    ],
+    // products: [
+    //     {
+    //         P_sale:{type:Number},
+    //         p_company:{type:String},
+    //         p_name:{type:String},
+    //         p_exsale:{type:Number},
+    //         p_price:{type:Number},
+    //         p_quantity:{type:Number},
+    //         cus_name:{type:String},
+    //         p_Id:{type:String},
+    //         pro_quantity:{type:String}
+    //     }
+    // ],
+    cart:{
+        type:Object,
+        required:true
+    },
     subtotal: {
         type: Number,
         required: true

@@ -38,7 +38,7 @@ router.post(
             // adminid: req.body.adminid,
             c_Id: seqId,
             cus_name: req.body.cus_name,
-            products:req.body.products,
+            cart:req.body.cart,
             totalquant: req.body.totalquant,
             subtotal:req.body.subtotal,
             finalpay:req.body.finalpay,
