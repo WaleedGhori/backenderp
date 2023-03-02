@@ -13,10 +13,11 @@ router.post(
   [
     body("a_name", "Enter a valid Name").isLength({ min: 3 }),
     body("f_name", "Enter a valid father name").isLength({ min: 3 }),
+    body("phone", "Enter a valid phone number").isLength({ min: 10 }),
+    body("cnic", "Enter a valid cnic number").isLength({ min: 12 }),
     body("password", "Password must be greater than 8 characters").isLength({
-      min: 6,
+      min: 7,
     }),
-    body("phone", "Enter a valid phone number").isLength({ min: 11 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -78,8 +79,8 @@ router.post(
 router.post(
   "/login",
   [
-    body("adminid", "Enter a valid ID").exists(),
-    body("password", "Password cannot be blank").exists(),
+    body("a_name", "Enter a valid username").exists({ min: 3 }),
+    body("password", "Password cannot be blank").exists({ min: 7 }),
   ],
   async (req, res) => {
     let success = false;
@@ -89,16 +90,15 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { adminid, password } = req.body;
+    const { a_name, password } = req.body;
     try {
-      let admin = await Admin.findOne({ adminid });
+      let admin = await Admin.findOne({ a_name });
       if (!admin) {
         success = false;
         return res
           .status(400)
           .json({ error: "Please try to login with correct credentials" });
       }
-
       const passwordCompare = await bcrypt.compare(password, admin.password);
       if (!passwordCompare) {
         success = false;
@@ -107,7 +107,6 @@ router.post(
           error: "Please try to login with correct credentials",
         });
       }
-
       const data = {
         admin: {
           id: admin.id,

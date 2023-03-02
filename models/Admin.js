@@ -6,14 +6,13 @@ const AdminSchema = new Schema({
     adminid:{
         // type:String,
         required:true,
-        // unique:true
-        type:Number
-        ,
+        type:Number,
         unique:true
     },
     a_name :{
         type: String,
-        required:true
+        required:true,
+        unique:true
     },
     f_name :{
         type: String,
@@ -29,7 +28,8 @@ const AdminSchema = new Schema({
     },
     cnic:{
         type: String,
-        required:true
+        required:true,
+        unique:true
     },
     phone:{
         type: String,
